@@ -12,6 +12,7 @@ namespace back_end.DAL
         public ItemContext(DbContextOptions options) : base(options) { }
 
         public virtual DbSet<Item> Item { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
 
     }
