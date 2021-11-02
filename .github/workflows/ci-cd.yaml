@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - main
-    path: 
+    paths: 
       - "Back-End-Individual/TaskService/**"
       - ".github/workflows/ci-cd.yaml"
 
- env:
-   PROJECT_PATH: 'Back-End-Individual/TaskService/back-end.csproj'
+env:
+  PROJECT_PATH: 'Back-End-Individual/TaskService/back-end.csproj'
 
 jobs:
   push:
