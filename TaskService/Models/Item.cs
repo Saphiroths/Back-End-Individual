@@ -13,12 +13,17 @@ namespace back_end.Models
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-
-        public Item(int iD, string title, string description)
+        public int Category { get; set; }
+        public int Price { get; set; }
+        public string Picture { get; set; }
+        public Item(int iD, string title, string description, int category, int price, string picture)
         {
             ID = iD;
             Title = title;
             Description = description;
+            Category = category;
+            Price = price;
+            Picture = picture;
         }
 
         public Item()
