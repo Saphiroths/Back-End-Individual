@@ -6,7 +6,7 @@ on:
       - main
     paths: 
       - "Back-End-Individual/TaskService/**"
-      - ".github/workflows/ci-cd.yaml/"
+      - ".github/workflows/Docker-Ci.yml/"
 
   pull_request:
     branches:
