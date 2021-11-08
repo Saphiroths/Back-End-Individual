@@ -6,15 +6,16 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-COPY *.csproj ./
-RUN dotnet restore
+COPY ["back-end.csproj", "."]
+RUN dotnet restore "./back-end.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "back-end.csproj" -c Release -o /app/build
 
-COPY . ./
-RUN dotnet publish -c Release -o out
+FROM build AS publish
+RUN dotnet publish "back-end.csproj" -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:3.1
+FROM base AS final
 WORKDIR /app
-COPY --from=build /app/out .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "back-end.dll"]
-
-
