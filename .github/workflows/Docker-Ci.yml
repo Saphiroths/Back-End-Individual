@@ -44,6 +44,6 @@ jobs:
       - name: build and push
         uses: docker/build-push-action@v2
         with:
-          context: 'Back-End-Individual/TaskService' 
+          context: 'back-end-individual/taskService' 
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/back-end-individual:latest
