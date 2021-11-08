@@ -42,9 +42,10 @@ jobs:
             password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: build and push
+        id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: 'TaskService' 
           push: true
+          context: 'TaskService'           
           tags: ${{ secrets.DOCKER_USERNAME }}/back-end-individual/taskservice:latest
           
