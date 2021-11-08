@@ -10,7 +10,7 @@ on:
       - main
   
 env:
-  PROJECT_PATH: 'TaskService/itemservice.csproj'
+  PROJECT_PATH: 'TaskService/ItemService.csproj'
 
 jobs:
   push:
