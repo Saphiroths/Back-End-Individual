@@ -10,7 +10,7 @@ on:
       - main
   
 env:
-  PROJECT_PATH: 'TaskService/ItemService.csproj'
+  PROJECT_PATH: 'Back-End-Individual/TaskService/ItemService.csproj'
 
 jobs:
   push:
@@ -44,8 +44,7 @@ jobs:
       - name: build and push
         uses: docker/build-push-action@v2
         with:
-          run: dotnet publish back-end.sln -c Release -o out
-          context: 'TaskService' 
+          context: 'Back-End-Individual/TaskService' 
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/back-end-individual/itemservice:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/back-end-individual/taskservice:latest
           
