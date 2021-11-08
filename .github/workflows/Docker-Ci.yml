@@ -46,4 +46,4 @@ jobs:
         with:
           context: 'back-end-individual/taskService' 
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/back-end-individual:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/Back-End-Individual/TaskService:latest
