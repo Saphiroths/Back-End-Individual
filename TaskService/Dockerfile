@@ -17,16 +17,3 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "back-end.dll"]
 
-//COPY ["back-end.csproj", "."]
-//RUN dotnet restore "./back-end.csproj"
-//COPY . .
-//WORKDIR "/src/."
-//RUN dotnet build "back-end.csproj" -c Release -o /app/build
-
-//FROM build AS publish
-//RUN dotnet publish "back-end.csproj" -c Release -o /app/publish
-
-//FROM base AS final
-//WORKDIR /app
-//COPY --from=publish /app/publish .
-//ENTRYPOINT ["dotnet", "back-end.dll"]
