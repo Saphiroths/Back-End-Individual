@@ -46,4 +46,4 @@ jobs:
         with:
           context: 'ItemService' 
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/ItemService:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/itemservice:latest
