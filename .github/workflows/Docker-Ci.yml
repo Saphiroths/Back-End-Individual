@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths: 
-      - "Back-End-Individual/TaskService/**"
-      - ".github/workflows/Docker-Ci.yml/"
 
   pull_request:
     branches:
