@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using back_end.HubConfig;
 
 namespace back_end
 {
@@ -27,13 +28,32 @@ namespace back_end
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsDevelopment", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
+                options.AddPolicy("AllowAllHeaders",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                    });
             });
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("CorsDevelopment", builder =>
+            //    {
+            //        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            //    });
+            //});
+
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
+
+            
             services.AddControllers();
             services.AddDbContext<ItemContext>(options =>
             {
@@ -51,15 +71,14 @@ namespace back_end
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-            app.UseCors("CorsDevelopment");
-
+            app.UseCors("AllowAllHeaders");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<MyHub>("/toastr");
             });
         }
     }
