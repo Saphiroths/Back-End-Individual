@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using User_Back_End.DAL;
 using User_Back_End.Logic;
+using User_Back_End.Hubs;
 
 namespace User_Back_End
 {
@@ -35,11 +36,18 @@ namespace User_Back_End
                 });
             });
 
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
+
             services.AddControllers();
+
             services.AddDbContext<UserContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<UserLogic>();
         }
@@ -52,15 +60,15 @@ namespace User_Back_End
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseRouting();
 
-            //app.UseHttpsRedirection();
-            app.UseCors("CorsDevelopment");
-            //app.UseAuthorization();
 
+            app.UseCors("CorsDevelopment");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<MessageHub>("/messages");
             });
         }
     }

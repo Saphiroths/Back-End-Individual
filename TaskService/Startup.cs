@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using back_end.HubConfig;
+
 
 namespace back_end
 {
@@ -78,7 +78,7 @@ namespace back_end
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<MyHub>("/toastr");
+
             });
         }
     }
