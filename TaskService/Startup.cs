@@ -1,4 +1,4 @@
-using back_end.DAL;
+using TaskService.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using TaskService.Logic;
 
 namespace back_end
 {
@@ -60,6 +60,7 @@ namespace back_end
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
             services.AddScoped<IItemRepo, ItemRepo>();
+            services.AddScoped<ItemLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

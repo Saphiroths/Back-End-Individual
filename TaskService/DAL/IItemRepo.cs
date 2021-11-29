@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using back_end.Models;
+using TaskService.Models;
 
-namespace back_end.DAL
+namespace TaskService.DAL
 {
     public interface IItemRepo
     {
-        IEnumerable<Item> GetAllItems();
+        ICollection<Item> GetAllItems();
+        Item NewItem(Item item);
 
     }
 }

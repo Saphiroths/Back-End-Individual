@@ -3,16 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using back_end.Models;
+using TaskService.Models;
 
-namespace back_end.DAL
+namespace TaskService.DAL
 {
     public class ItemContext : DbContext
     {
         public ItemContext(DbContextOptions options) : base(options) { }
 
         public virtual DbSet<Item> Item { get; set; }
-        //public virtual DbSet<User> User { get; set; }
 
 
     }
