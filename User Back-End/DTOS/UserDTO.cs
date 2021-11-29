@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace back_end.ViewModels
+namespace User_Back_End.DTOS
 {
-    public class UserViewModel
+    public class UserDTO
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
+        public Guid ID { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
     }
