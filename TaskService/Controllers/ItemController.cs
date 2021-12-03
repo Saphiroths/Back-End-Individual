@@ -4,19 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using back_end.ViewModels;
-using back_end.DAL;
+using TaskService.ViewModels;
+using TaskService.DAL;
+using TaskService.Models;
+using TaskService.Logic;
 
-namespace back_end.Controllers
+
+namespace TaskService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("item")]
     [ApiController]
     public class ItemController : ControllerBase
     {
-        private readonly IItemRepo _repo;
-        public ItemController(IItemRepo _taskRepo)
+        private readonly ItemLogic _itemLogic;
+        public ItemController(ItemLogic itemlogic)
         {
-            _repo = _taskRepo;
+            _itemLogic = itemlogic;
         }
 
         [HttpGet]
@@ -26,7 +29,7 @@ namespace back_end.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetAllTasks()
         {
-            return Ok(_repo.GetAllItems());
+            return Ok(_itemLogic.GetAllItems());
         }
 
         [HttpGet]
@@ -40,13 +43,16 @@ namespace back_end.Controllers
         }
 
         [HttpPost]
-        [Route("create"), ActionName("createItem")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreateTask([FromBody] ItemViewModel tvm)
+        [Route("create")]
+        public async Task<ActionResult<Item>> CreateItem([FromBody] Item item)
         {
-            return CreatedAtAction("itemById", new { id = tvm.ID }, tvm);
+            if (item.Title != null && item.Description != null)
+            {
+                _itemLogic.NewItem(item);
+                return CreatedAtAction("CreateItem", item);
+            }
+            return StatusCode(404, "Not all fields are filled in");
         }
+
     }
 }

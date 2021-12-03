@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TaskService.ViewModels
+namespace TaskService.DTOS
 {
-    public class ItemViewModel
+    public class ItemDTO
     {
         public int ID { get; set; }
         public string Title { get; set; }
