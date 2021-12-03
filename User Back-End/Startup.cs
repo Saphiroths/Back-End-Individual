@@ -1,20 +1,19 @@
-using back_end.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using User_Back_End.DAL;
+using User_Back_End.Logic;
+using User_Back_End.Hubs;
 
-
-namespace back_end
+namespace User_Back_End
 {
     public class Startup
     {
@@ -26,40 +25,31 @@ namespace back_end
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllHeaders",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
-                    });
+                options.AddPolicy("CorsDevelopment", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
             });
-
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("CorsDevelopment", builder =>
-            //    {
-            //        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-            //    });
-            //});
 
             services.AddSignalR(options =>
             {
                 options.EnableDetailedErrors = true;
             });
 
-            
             services.AddControllers();
-            services.AddDbContext<ItemContext>(options =>
+
+            services.AddDbContext<UserContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
-            services.AddScoped<IItemRepo, ItemRepo>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<UserLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,15 +60,15 @@ namespace back_end
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseCors("AllowAllHeaders");
-            app.UseAuthorization();
 
+            app.UseRouting();
+
+
+            app.UseCors("CorsDevelopment");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-
+                endpoints.MapHub<MessageHub>("/messages");
             });
         }
     }
