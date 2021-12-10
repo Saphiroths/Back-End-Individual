@@ -27,5 +27,12 @@ namespace TaskService.DAL
             _context.SaveChanges();
             return item;
         }
+
+        public Item UpdateItem(Item item)
+        {
+            _context.Item.Update(item);
+            _context.SaveChanges();
+            return item;
+        }
     }
 }

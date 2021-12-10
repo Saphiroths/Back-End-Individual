@@ -54,5 +54,16 @@ namespace TaskService.Controllers
             return StatusCode(404, "Not all fields are filled in");
         }
 
+        [HttpPut]
+        [Route("update")]
+        public IActionResult UpdateItem([FromBody] Item item)
+        {
+            if (item.Title != null && item.Description != null)
+            {
+                _itemLogic.UpdateItem(item);              
+            }
+            return Ok(_itemLogic.GetAllItems());
+        }
+
     }
 }
