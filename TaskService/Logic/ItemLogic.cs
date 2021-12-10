@@ -25,5 +25,10 @@ namespace TaskService.Logic
         {
             return _repository.GetAllItems();
         }
+
+        public Item UpdateItem(Item item)
+        {
+            return _repository.UpdateItem(item);
+        }
     }
 }
