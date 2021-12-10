@@ -13,16 +13,16 @@ namespace User_Back_End.Hubs
         {
             string tempstring;
 
-            if (message != null)
+            if (message == "hey")
             {
-                tempstring = message;
+                tempstring = "message was 'hey'";
             }
             else
             {
                 tempstring = "no message";
             }
 
-            await Clients.All.SendAsync("askServerResponse", tempstring);
+            await Clients.Clients(this.Context.ConnectionId).SendAsync("askServerResponse", tempstring);
         }
     }
 }
