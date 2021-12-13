@@ -11,6 +11,6 @@ namespace TaskService.DAL
         ICollection<Item> GetAllItems();
         Item NewItem(Item item);
         Item UpdateItem(Item item);
-
+        void DeleteItem(int id);
     }
 }

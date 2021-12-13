@@ -33,5 +33,10 @@ namespace TaskService.Logic
         {
             return mapper.Map<ItemViewModel>(_repository.UpdateItem(mapper.Map<Item>(item)));
         }
+
+        public void DeleteItem(int id)
+        {
+            _repository.DeleteItem(id);
+        }
     }
 }

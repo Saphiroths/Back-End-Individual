@@ -66,5 +66,12 @@ namespace TaskService.Controllers
             return Ok(_itemLogic.GetAllItems());
         }
 
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public async Task<ActionResult<ItemViewModel>> DeleteItem(int id)
+        {
+            _itemLogic.DeleteItem(id);
+            return NoContent();
+        }
     }
 }

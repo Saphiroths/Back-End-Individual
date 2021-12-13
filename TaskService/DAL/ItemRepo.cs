@@ -40,5 +40,14 @@ namespace TaskService.DAL
             _context.SaveChanges();
             return item;
         }
+
+        public void DeleteItem(int id)
+        {
+            Item deleteitem = _context.Item.SingleOrDefault(i => i.ID == id);
+            _context.Item.Remove(deleteitem);
+            _context.SaveChanges();
+
+        }
+
     }
 }
