@@ -58,6 +58,7 @@ namespace TaskService.Controllers
         [Route("update")]
         public IActionResult UpdateItem([FromBody] Item item)
         {
+
             if (item.Title != null && item.Description != null)
             {
                 _itemLogic.UpdateItem(item);              

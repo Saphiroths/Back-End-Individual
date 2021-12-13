@@ -30,7 +30,13 @@ namespace TaskService.DAL
 
         public Item UpdateItem(Item item)
         {
-            _context.Item.Update(item);
+            Item updateitem = _context.Item.SingleOrDefault(i => i.ID == item.ID);
+            updateitem.Title = item.Title;
+            updateitem.Description = item.Description;
+            updateitem.Category = item.Category;
+            updateitem.Price = item.Price;
+            updateitem.Picture = item.Picture;
+            _context.Item.Update(updateitem);
             _context.SaveChanges();
             return item;
         }
