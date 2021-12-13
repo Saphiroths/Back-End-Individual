@@ -4,31 +4,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using TaskService.Models;
 using TaskService.DAL;
-
+using AutoMapper;
+using TaskService.ViewModels;
 
 namespace TaskService.Logic
 {
     public class ItemLogic
     {
+        IMapper mapper;
         IItemRepo _repository;
-        public ItemLogic(IItemRepo repository)
+        public ItemLogic(IItemRepo repository, IMapper mapper)
         {
             _repository = repository;
+            this.mapper = mapper;
         }
 
-        public Item NewItem(Item item)
+        public ItemViewModel NewItem(ItemViewModel item)
         {
-            return _repository.NewItem(item);
+            return mapper.Map<ItemViewModel>(_repository.NewItem(mapper.Map<Item>(item)));
         }
 
-        public ICollection<Item> GetAllItems()
+        public ICollection<ItemViewModel> GetAllItems()
         {
-            return _repository.GetAllItems();
+            return mapper.Map<ICollection<ItemViewModel>>(_repository.GetAllItems());
         }
 
-        public Item UpdateItem(Item item)
+        public ItemViewModel UpdateItem(ItemViewModel item)
         {
-            return _repository.UpdateItem(item);
+            return mapper.Map<ItemViewModel>(_repository.UpdateItem(mapper.Map<Item>(item)));
         }
     }
 }

@@ -42,7 +42,7 @@ namespace User_Back_End
             });
 
             services.AddControllers();
-
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<UserContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));

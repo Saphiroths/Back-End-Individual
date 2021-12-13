@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using User_Back_End.Logic;
-using User_Back_End.Models;
 using User_Back_End.ViewModels;
 
 namespace User_Back_End.Controllers
@@ -22,7 +21,7 @@ namespace User_Back_End.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<User>> Login([FromBody] User user)
+        public async Task<ActionResult<UserViewModel>> Login([FromBody] UserViewModel user)
         {
             user = _userLogic.GetUser(user);
             if (user != null)
@@ -34,7 +33,7 @@ namespace User_Back_End.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task<ActionResult<User>> CreateUser([FromBody] User user)
+        public async Task<ActionResult<UserViewModel>> CreateUser([FromBody] UserViewModel user)
         {
             if (user.Username != null && user.Email != null && user.Address != null && user.City != null)
             {

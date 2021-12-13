@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskService.ViewModels;
 using TaskService.DAL;
-using TaskService.Models;
+
 using TaskService.Logic;
 
 
@@ -44,7 +44,7 @@ namespace TaskService.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<Item>> CreateItem([FromBody] Item item)
+        public async Task<ActionResult<ItemViewModel>> CreateItem([FromBody] ItemViewModel item)
         {
             if (item.Title != null && item.Description != null)
             {
@@ -56,7 +56,7 @@ namespace TaskService.Controllers
 
         [HttpPut]
         [Route("update")]
-        public IActionResult UpdateItem([FromBody] Item item)
+        public IActionResult UpdateItem([FromBody] ItemViewModel item)
         {
 
             if (item.Title != null && item.Description != null)

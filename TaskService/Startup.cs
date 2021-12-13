@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskService.Logic;
+using AutoMapper;
 
 namespace back_end
 {
@@ -40,6 +41,7 @@ namespace back_end
                     });
             });
 
+            services.AddAutoMapper(typeof(Startup));
             //services.AddCors(options =>
             //{
             //    options.AddPolicy("CorsDevelopment", builder =>
