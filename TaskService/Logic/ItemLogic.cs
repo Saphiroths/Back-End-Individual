@@ -25,5 +25,10 @@ namespace TaskService.Logic
         {
             return _repository.GetAllItems();
         }
+
+        public void DeleteItem(int id)
+        {
+            _repository.DeleteItem(id);
+        }
     }
 }

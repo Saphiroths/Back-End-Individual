@@ -54,5 +54,13 @@ namespace TaskService.Controllers
             return StatusCode(404, "Not all fields are filled in");
         }
 
+        [HttpDelete]
+        [Route("delete")]
+        public async Task<ActionResult<Item>> DeleteItem([FromBody] int id)
+        {
+            _itemLogic.DeleteItem(id);
+            return NoContent();        
+        }
+
     }
 }
