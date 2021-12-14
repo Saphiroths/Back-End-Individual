@@ -4,9 +4,9 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:23936",
-      "sslPort": 44335
+      "sslPort": 44379
     }
-  },
+  }, 
   "profiles": {  
     "User_Back_End": {
       "commandName": "Project",

@@ -69,6 +69,7 @@ namespace User_Back_End
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<MessageHub>("/messages");
+                endpoints.MapHub<ChatHub>("/chatsocket");
             });
         }
     }
