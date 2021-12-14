@@ -11,18 +11,20 @@ namespace User_Back_End.Hubs
     
         public async Task askServer(string message)
         {
-            string tempstring;
 
-            if (message == "hey")
-            {
-                tempstring = "message was 'hey'";
-            }
-            else
-            {
-                tempstring = "no message";
-            }
+            //string tempstring;
 
-            await Clients.Clients(this.Context.ConnectionId).SendAsync("askServerResponse", tempstring);
+            //if (message == "You are logged in!")
+            //{
+            //    tempstring = "You are logged in!";
+            //}
+            //else
+            //{
+            //    tempstring = "no message";
+            //}
+
+            await Clients.All.SendAsync("askServerResponse", message);
         }
+
     }
 }
