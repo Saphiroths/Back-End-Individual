@@ -43,5 +43,14 @@ namespace User_Back_End.Controllers
             return StatusCode(404, "Not all fields are filled in");
         }
 
+        [HttpGet]
+        [Route("{email}")]
+        public async Task<ActionResult<UserViewModel>> GetUser(string email)
+        {
+            UserViewModel userViewModel = new UserViewModel { Email = email };
+            userViewModel = _userLogic.GetUser(userViewModel);
+            return Ok (userViewModel);
+        }
+
     }
 }

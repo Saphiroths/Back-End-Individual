@@ -11,22 +11,27 @@ namespace User_Back_End.Logic
 {
     public class UserLogic
     {
-        IMapper mapper;
+        IMapper _mapper;
         IUserRepository _repository;
         public UserLogic(IUserRepository repository, IMapper mapper)
         {
             _repository = repository;
-            this.mapper = mapper;
+            _mapper = mapper;
         }
 
-        public UserViewModel GetUser(UserViewModel user)
+        public UserViewModel GetUser(UserViewModel userViewModel)
         {
-            return mapper.Map<UserViewModel>(_repository.GetUser(mapper.Map<User>(user)));
+            User user = _mapper.Map<User>(userViewModel);
+            userViewModel = _mapper.Map<UserViewModel>(_repository.GetUser(user));
+            return userViewModel;
         }
 
-        public UserViewModel NewUser(UserViewModel user)
+        public UserViewModel NewUser(UserViewModel userViewModel)
         {
-            return mapper.Map<UserViewModel>(_repository.NewUser(mapper.Map<User>(user)));
+            userViewModel.ID = Guid.NewGuid();
+            User user = _mapper.Map<User>(userViewModel);
+            userViewModel = _mapper.Map<UserViewModel>(_repository.NewUser(user));
+            return userViewModel;
         }
     }
 }
