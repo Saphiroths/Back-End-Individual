@@ -15,6 +15,7 @@ namespace User_Back_End.Models
         public string Username { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
+
         public User()
         {
 

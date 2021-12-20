@@ -16,15 +16,7 @@ namespace TaskService.Models
         public int Category { get; set; }
         public int Price { get; set; }
         public string Picture { get; set; }
-        public Item(int iD, string title, string description, int category, int price, string picture)
-        {
-            ID = iD;
-            Title = title;
-            Description = description;
-            Category = category;
-            Price = price;
-            Picture = picture;
-        }
+        public Guid UserID { get; set; }
 
         public Item()
         {

@@ -42,6 +42,14 @@ namespace TaskService.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [Route("users/{id}")]
+        public async Task<ActionResult<ItemViewModel>> getItemsByUser(Guid id)
+        {
+           List<ItemViewModel> itemViewModel = _itemLogic.getItemsByUser(id);
+            return Ok(itemViewModel);
+        }
+
         [HttpPost]
         [Route("create")]
         public async Task<ActionResult<ItemViewModel>> CreateItem([FromBody] ItemViewModel item)

@@ -13,5 +13,6 @@ namespace TaskService.ViewModels
         public int Category { get; set; }
         public int Price { get; set; }
         public string Picture { get; set; }
+        public Guid UserID { get; set; }
     }
 }

@@ -49,5 +49,11 @@ namespace TaskService.DAL
 
         }
 
+        public List<Item> getItemsByUser(Guid id)
+        {
+            List<Item> items = new List<Item>();
+            items.AddRange(_context.Item.Where(i => i.UserID == id).ToList());
+            return items;
+        }
     }
 }
