@@ -32,7 +32,7 @@ jobs:
         run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
         
       - name: Test
-        run: dotnet test Back-End-Individual/UserTests/
+        run: dotnet test Back-End-Individual/UserTests/TestProject.csproj
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
