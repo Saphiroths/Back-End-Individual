@@ -9,7 +9,7 @@ using TaskService.Models;
 using TaskService.ViewModels;
 using TestProject.MockContexts;
 
-namespace ItemTests
+namespace TestProject.ItemTests
 {
     [TestClass]
     public class ItemTests

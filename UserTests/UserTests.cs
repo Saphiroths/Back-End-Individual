@@ -7,7 +7,7 @@ using User_Back_End.ViewModels;
 using User_Back_End.Profiles;
 using TestProject.MockContexts;
 
-namespace UserTests
+namespace TestProject.UserTests
 {
     [TestClass]
     public class UserTests
