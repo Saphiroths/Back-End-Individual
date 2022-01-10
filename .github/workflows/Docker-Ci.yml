@@ -11,7 +11,7 @@ on:
   
 env:
   PROJECT_PATH: 'TaskService/TaskService.csproj'
-  TEST_PATH: './TestProject.csproj'
+  TEST_PATH: '**/TestProject.csproj'
   
 jobs:
   push:
