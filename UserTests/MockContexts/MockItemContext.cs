@@ -30,6 +30,11 @@ namespace TestProject.MockContexts
             throw new NotImplementedException();
         }
 
+        public List<Item> getItemsByUserId(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Item NewItem(Item item)
         {
             return item;
@@ -47,7 +52,7 @@ namespace TestProject.MockContexts
                 Item item = new Item();
                 item.ID = i;
                 item.Title = "Title" + i;
-                item.UserID = new Guid();
+                //item.UserID = new Guid();
                 item.Price = 50 + i;
                 item.Picture = "Picture" + i;
                 items.Add(item);

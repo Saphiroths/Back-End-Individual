@@ -49,11 +49,32 @@ namespace TaskService.DAL
 
         }
 
-        public List<Item> getItemsByUser(Guid id)
+        //public List<Item> getItemsByUser(Guid id)
+        //{
+        //    List<Item> items = new List<Item>();
+        //    items.AddRange(_context.Item.Where(i => i.UserID == id).ToList());
+        //    return items;
+        //}
+
+        public Item GetItemById(int id)
         {
+            return _context.Item.Where(i => i.ID == id).FirstOrDefault();
+        }
+
+        public List<Item> getItemsByUserId(Guid id)
+        {
+            List<int> itemIds = _context.User_Item
+                .Where(u => u.UserID == id)
+                .Select(u => u.ItemID)
+                .ToList();
+
             List<Item> items = new List<Item>();
-            items.AddRange(_context.Item.Where(i => i.UserID == id).ToList());
+            foreach(int i in itemIds)
+            {
+                items.Add(GetItemById(i));
+            }
             return items;
         }
+
     }
 }

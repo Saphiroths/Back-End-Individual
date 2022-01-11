@@ -39,9 +39,15 @@ namespace TaskService.Logic
             _repository.DeleteItem(id);
         }
 
-        public List<ItemViewModel> getItemsByUser(Guid id)
+        //public List<ItemViewModel> getItemsByUser(Guid id)
+        //{
+        //    return mapper.Map<List<ItemViewModel>>(_repository.getItemsByUser(id));
+        //}
+
+        public List<ItemViewModel> getItemsByUserId(Guid id)
         {
-            return mapper.Map<List<ItemViewModel>>(_repository.getItemsByUser(id));
+            return mapper.Map<List<ItemViewModel>>(_repository.getItemsByUserId(id));
         }
+
     }
 }

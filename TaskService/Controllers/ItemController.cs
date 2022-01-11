@@ -42,13 +42,13 @@ namespace TaskService.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        [Route("users/{id}")]
-        public async Task<ActionResult<ItemViewModel>> getItemsByUser(Guid id)
-        {
-           List<ItemViewModel> itemViewModel = _itemLogic.getItemsByUser(id);
-            return Ok(itemViewModel);
-        }
+        //[HttpGet]
+        //[Route("users/{id}")]
+        //public async Task<ActionResult<ItemViewModel>> getItemsByUser(Guid id)
+        //{
+        //   List<ItemViewModel> itemViewModel = _itemLogic.getItemsByUser(id);
+        //    return Ok(itemViewModel);
+        //}
 
         [HttpPost]
         [Route("create")]
@@ -80,6 +80,21 @@ namespace TaskService.Controllers
         {
             _itemLogic.DeleteItem(id);
             return NoContent();
+        }
+
+        [HttpGet]
+        [Route("get/{id}")]
+        public async Task<ActionResult<List<ItemViewModel>>> GetItemsById(Guid id)
+        {
+            try
+            {
+                List<ItemViewModel> itemviewmodels = _itemLogic.getItemsByUserId(id);
+                    return Ok(itemviewmodels);
+            }
+            catch (Exception ex)
+            {
+                return this.Content(ex.Message + "while getting items by id");
+            }         
         }
     }
 }

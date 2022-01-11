@@ -12,6 +12,7 @@ namespace TaskService.DAL
         Item NewItem(Item item);
         Item UpdateItem(Item item);
         void DeleteItem(int id);
-        List<Item> getItemsByUser(Guid id);
+        //List<Item> getItemsByUser(Guid id);
+        List<Item> getItemsByUserId(Guid id);
     }
 }
