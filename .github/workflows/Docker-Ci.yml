@@ -52,3 +52,4 @@ jobs:
           context: 'TaskService'           
           tags: ${{ secrets.DOCKER_USERNAME }}/taskservice:latest
           
+
